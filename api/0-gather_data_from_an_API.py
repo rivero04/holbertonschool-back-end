@@ -19,8 +19,8 @@ def get_employee_task_progress(user_id):
     completed_tasks = [task.get('title') for task in todo if
                        task.get('completed')]
 
-    print(f'Employee {name} is done with \
-          tasks({len(completed_tasks)}/{len(todo)}):')
+    print(f'Employee {name} is done with tasks('
+          f'{len(completed_tasks)}/{len(todo)}):')
 
     print('\n'.join('\t {}'.format(task) for task in completed_tasks))
 
