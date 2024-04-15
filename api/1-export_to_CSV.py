@@ -10,7 +10,6 @@ def get_employee_task_progress(user_id):
     """
     Prints an employee's task progress and exports data to a CSV file.
     """
-
     user = f"https://jsonplaceholder.typicode.com/users/{user_id}"
     todos = f"https://jsonplaceholder.typicode.com/todos/?userId={user_id}"
 
@@ -19,8 +18,8 @@ def get_employee_task_progress(user_id):
 
     csv_data = [["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]]
     for task in todo:
-        csv_data.append([user_id, name, task.get('completed'),
-                         task.get('title')])
+        csv_data.append([user_id, name,
+                         task.get('completed'), task.get('title')])
 
     csv_file = f"{user_id}.csv"
 
