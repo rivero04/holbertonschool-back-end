@@ -27,7 +27,7 @@ def get_employee_task_progress(user_id):
 
     data = {user_id: tasks}
 
-    with open(f"{user_id}.json", "w") as json_file:
+    with open("todo_all_employees.json", "w") as json_file:
         json.dump(data, json_file)
 
 
