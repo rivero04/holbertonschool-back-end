@@ -23,7 +23,7 @@ def get_employee_task_progress(user_id):
 
     csv_file = f"{user_id}.csv"
 
-    with open(csv_file, 'w', newline='') as file:
+    with open(csv_file, 'w') as file:
         writer = csv.writer(file)
         writer.writerows(csv_data)
 
