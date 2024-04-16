@@ -23,9 +23,9 @@ def get_employee_task_progress(user_id):
 
     csv_file = f"{user_id}.csv"
 
-    with open(csv_file, 'w') as file:
-        writer = csv.writer(file)
-        writer.writerows(csv_data)
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL, quotechar='"')
+        writer.writerows(csv_data[1:])
 
 
 if __name__ == "__main__":
