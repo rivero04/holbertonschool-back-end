@@ -1,36 +1,37 @@
 #!/usr/bin/python3
 """API PROJECT"""
 
-import json
 import requests
-import sys
+import json
 
 
-def get_employee_task_progress(user_id):
+def get_all_employees_tasks():
     """
-    Exports an employee's task progress to a JSON file.
+    Exports tasks from all employees to a JSON file.
     """
 
-    user = f"https://jsonplaceholder.typicode.com/users/{user_id}"
-    todos = f"https://jsonplaceholder.typicode.com/todos/?userId={user_id}"
+    users = requests.get("https://jsonplaceholder.typicode.com/users").json()
+    all_tasks = {}
 
-    user = requests.get(user).json()
-    todo = requests.get(todos).json()
+    for user in users:
+        user_id = user.get('id')
+        todos = requests.get(
+            f"https://jsonplaceholder.typicode.com/todos/?userId={user_id}"
+            ).json()
 
-    tasks = []
-    for task in todo:
-        tasks.append({
-            "task": task.get('title'),
-            "completed": task.get('completed'),
-            "username": user.get('username')
-        })
+        tasks = []
+        for task in todos:
+            tasks.append({
+                "username": user.get('username'),
+                "task": task.get('title'),
+                "completed": task.get('completed')
+            })
 
-    data = {user_id: tasks}
+        all_tasks[user_id] = tasks
 
     with open("todo_all_employees.json", "w") as json_file:
-        json.dump(data, json_file)
+        json.dump(all_tasks, json_file)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        get_employee_task_progress(sys.argv[1])
+    get_all_employees_tasks()
