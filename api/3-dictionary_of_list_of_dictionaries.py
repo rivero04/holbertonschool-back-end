@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """API PROJECT"""
 
-import requests
 import json
+import requests
 
 
 def get_all_employees_tasks():
