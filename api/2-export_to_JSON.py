@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """API PROJECT"""
 
+import json
 import requests
 import sys
-import json
 
 
 def get_employee_task_progress(user_id):
