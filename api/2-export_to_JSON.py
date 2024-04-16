@@ -5,6 +5,7 @@ import requests
 import sys
 import json
 
+
 def get_employee_task_progress(user_id):
     """
     Exports an employee's task progress to a JSON file.
@@ -13,7 +14,7 @@ def get_employee_task_progress(user_id):
     user = f"https://jsonplaceholder.typicode.com/users/{user_id}"
     todos = f"https://jsonplaceholder.typicode.com/todos/?userId={user_id}"
 
-    user= requests.get(user).json()
+    user = requests.get(user).json()
     todo = requests.get(todos).json()
 
     tasks = []
@@ -28,7 +29,7 @@ def get_employee_task_progress(user_id):
 
     with open(f"{user_id}.json", "w") as json_file:
         json.dump(data, json_file)
-        
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
